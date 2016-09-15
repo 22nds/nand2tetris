@@ -1,0 +1,120 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/ALU.hdl
+
+/**
+ * The ALU (Arithmetic Logic Unit).
+ * Computes one of the following functions:
+ * x+y, x-y, y-x, 0, 1, -1, x, y, -x, -y, !x, !y,
+ * x+1, y+1, x-1, y-1, x&y, x|y on two 16-bit inputs, 
+ * according to 6 input bits denoted zx,nx,zy,ny,f,no.
+ * In addition, the ALU computes two 1-bit outputs:
+ * if the ALU output == 0, zr is set to 1; otherwise zr is set to 0;
+ * if the ALU output < 0, ng is set to 1; otherwise ng is set to 0.
+ */
+
+// Implementation: the ALU logic manipulates the x and y inputs
+// and operates on the resulting values, as follows:
+
+// if (zx == 1) set x = 0        // 16-bit constant
+// if (nx == 1) set x = !x       // bitwise not
+
+// if (zy == 1) set y = 0        // 16-bit constant
+// if (ny == 1) set y = !y       // bitwise not
+
+// if (f == 1)  set out = x + y  // integer 2's complement addition
+// if (f == 0)  set out = x & y  // bitwise and
+// if (no == 1) set out = !out   // bitwise not
+// if (out == 0) set zr = 1
+// if (out < 0) set ng = 1
+
+CHIP ALU {
+    IN  
+        x[16], y[16],  // 16-bit inputs        
+        zx, // zero the x input?
+        nx, // negate the x input?
+        zy, // zero the y input?
+        ny, // negate the y input?
+        f,  // compute out = x + y (if 1) or x & y (if 0)
+        no; // negate the out output?
+
+    OUT 
+        out[16], // 16-bit output
+        zr, // 1 if (out == 0), 0 otherwise
+        ng; // 1 if (out < 0),  0 otherwise
+
+    PARTS:
+	// Make zeroes - alternative
+	// And16(a=x, b=false, out=zerox); 
+	// And16(a=y, b=false, out=zeroy);
+
+	// zx and zy
+  	Mux16(a=x, b=false, sel=zx, out=zxed); 
+  	Mux16(a=y, b=false, sel=zy, out=zyed);
+
+	// Negate x and y
+	Not16(in=zxed, out=notx);
+	Not16(in=zyed, out=noty);
+	
+	// nx and ny
+  	Mux16(a=zxed, b=notx, sel=nx, out=nxed); 
+  	Mux16(a=zyed, b=noty, sel=ny, out=nyed);
+
+	// f
+	Add16(a=nxed, b=nyed, out=xaddy);
+	And16(a=nxed, b=nyed, out=xandy);
+  	Mux16(a=xandy, b=xaddy, sel=f, out=fxy); 
+
+	// not
+	Not16(in=fxy, out=notxy);
+  	Mux16(sel=no,
+		, a=fxy
+		, b=notxy		
+		, out=out		// output
+		, out[0..7]=zout1	// first bus - least important
+		, out[8..15]=zout2	// second bus - most important
+		, out[15]=ng		// 1 if (out < 0),  0 otherwise
+	); 
+
+	// zr
+	Or8Way(in=zout1, out=ora); 
+	Or8Way(in=zout2, out=orb); 
+	Or(a=ora, b=orb, out=zero);
+	Not(in=zero, out=zr);
+
+	// ng - alternative
+  	// And(a=out[15], b=true, out=ng); 
+
+
+// ALTERNATIVE SOLUITION
+    //Not16(in=x, out=xinv);
+    //Mux4Way16(a=x, b=xinv, c=false, d=true, sel[0]=nx, sel[1]=zx, out=xpros);
+    //Not16(in=y, out=yinv);
+    //Mux4Way16(a=y, b=yinv, c=false, d=true, sel[0]=ny, sel[1]=zy, out=ypros);
+
+    //Add16(a=xpros, b=ypros, out=sumxy);
+    //Not16(in=sumxy, out=negsumxy);
+    //And16(a=xpros, b=ypros, out=andxy);
+    //Not16(in=andxy, out=negandxy);
+    //Mux4Way16(a=andxy, b=negandxy, c=sumxy, d=negsumxy, sel[1] = f, sel[0] = no, out=out, out[15]=ng, out[0..7]=btmout, out[8..15]=tpout);
+
+    //Or8Way(in=btmout, out=btmtrue);
+    //Or8Way(in=tpout, out=tptrue);
+    //Or(a=btmtrue, b=tptrue, out=zrinv);
+    //Not(in=zrinv, out=zr);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

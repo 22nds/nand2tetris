@@ -1,0 +1,13 @@
+CHIP example {
+    IN a[16], b[16], c[16], d[16], sel[2];
+    OUT out[16];
+
+    PARTS:
+
+    Not16(in=x, out=xinv);
+    Mux4Way16(a=x, b=xinv, c=false, d=true, sel[0]=nx, sel[1]=zx, out=out);
+
+//    Mux16(a=x, b=xinv, sel=sel[0], out=mux1);
+  //  Mux16(a=false, b=true, sel=sel[0], out=mux2);
+    // Mux16(a=mux1, b=mux2, sel=sel[1], out=out);
+}
