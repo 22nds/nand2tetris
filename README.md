@@ -17,17 +17,18 @@ by Nisan and Schocken, MIT Press.
 ## Boolean logic
 
 Example:
-```NOT(0 OR (1 AND 1))=
+```
+NOT(0 OR (1 AND 1))=
 NOT(0 OR 1)=
 NOT(1)=
 0
 ```
 
 ## Boolean function
-f(x, y, z) = (x AND y) OR (NOT (x) AND z)
+`f(x, y, z) = (x AND y) OR (NOT (x) AND z)`
 
 ## Truth table
-
+```
  x | y | z | f
 ===|===|===|===
  0 | 0 | 0 | 0
@@ -37,15 +38,14 @@ f(x, y, z) = (x AND y) OR (NOT (x) AND z)
  1 | 0 | 0 | 0
  1 | 1 | 0 | 1
  1 | 1 | 1 | 1
-
+```
 
 . = AND
 + = OR
 
 
 
-
-!(images/booleans.png?raw=true)
+![Booleans](/images/booleans.png)
 
 
 
@@ -77,78 +77,80 @@ x AND y = NOT(x NAND y)
 
 
 ## NAND gate
+```
  x | y | output 
 ===|===|===
  0 | 0 | 1 
  0 | 1 | 1 
  1 | 0 | 1 
  1 | 1 | 0 
-
+```
 ## AND gate
 y = AB = A.B
 True if both inputs are true.
-
+```
  x | y | output 
 ===|===|===
  0 | 0 | 0 
  0 | 1 | 0 
  1 | 0 | 0 
  1 | 1 | 1 
-
+```
 ## OR gate
 y = A+B
 True if either or both inputs are true. 
-
+```
  x | y | output 
 ===|===|===
  0 | 0 | 0 
  0 | 1 | 1 
  1 | 0 | 1 
  1 | 1 | 1 
-
+```
 ## XOR gate - Exclusive OR
 
 True if either but not both inputs are true. 
-
+```
  x | y | output 
 ===|===|===
  0 | 0 | 0 
  0 | 1 | 1 
  1 | 0 | 1 
  1 | 1 | 0 
-
+```
 
 ## NOT gate
 NOT(A)
-
+```
  x | x | output 
 ===|===|===
  0 | 0 | 1 
  0 | 1 | -
  1 | 0 | -
  1 | 1 | 0 
-
+```
 ## NOR gate
 Negated A+B
 Output is true if both inputs are false.
-
+```
  x | x | output 
 ===|===|===
  0 | 0 | 1 
  0 | 1 | 0
  1 | 0 | 0
  1 | 1 | 0 
-
+```
 ## XNOR gate
 Negated A+B
 True if outputs are the same and false if they are different
- x | x | output 
+```
+x | x | output 
 ===|===|===
  0 | 0 | 1 
  0 | 1 | 0
  1 | 0 | 0
  1 | 1 | 1 
-
+```
 
 Gate Logic
 
@@ -273,22 +275,25 @@ Goal is to build the following gates
 		
 		
 ## 16-bit bitwise AND
+```
 a    0100111000111101
 b    1111001100011010
 =====================
 AND  0100001000011000
-
+```
 ## 16-bitwise OR
+```
 a    0110110011100101
 b    1001110100101011
 =====================
 OR   1111110111101111
-
+```
 ## 16-bitwise NOT
+```
 a    1011010010110011
 =====================
 NOT  0100101101001100
-
+```
 
 
 
