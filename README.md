@@ -17,15 +17,12 @@ by Nisan and Schocken, MIT Press.
 ## Boolean logic
 
 Example:
-<<<<<<< HEAD
 ```
-=======
->>>>>>> 7bc96eb28e874e205b59b9f3118cd0319d0ba355
 NOT(0 OR (1 AND 1))=
 NOT(0 OR 1)=
 NOT(1)=
 0
-
+```
 
 ## Boolean function
 `f(x, y, z) = (x AND y) OR (NOT (x) AND z)`
@@ -48,12 +45,7 @@ NOT(1)=
 
 
 
-<<<<<<< HEAD
 ![Booleans](/images/booleans.png)
-=======
-
-!(/images/booleans.png?raw=true)
->>>>>>> 7bc96eb28e874e205b59b9f3118cd0319d0ba355
 
 
 
