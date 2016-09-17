@@ -17,11 +17,11 @@ by Nisan and Schocken, MIT Press.
 ## Boolean logic
 
 Example:
-```NOT(0 OR (1 AND 1))=
+NOT(0 OR (1 AND 1))=
 NOT(0 OR 1)=
 NOT(1)=
 0
-```
+
 
 ## Boolean function
 f(x, y, z) = (x AND y) OR (NOT (x) AND z)
