@@ -45,7 +45,7 @@ f(x, y, z) = (x AND y) OR (NOT (x) AND z)
 
 
 
-!(images/booleans.png?raw=true)
+!(/images/booleans.png?raw=true)
 
 
 
