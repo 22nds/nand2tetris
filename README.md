@@ -81,25 +81,25 @@ Group the numbers in four numbers (they represent 0-16)
 Negative numbers begin with 1 and 
 Positive numbers begin with 0
 
-## From positive to negative
+## From positive to negative - two ways to calculate it
 
-1. Flip all bits and add 1
+Flip all bits and add 1
 ```
-0101  5
-====
-1010 -6
-   1
-====
-1011 -5 
+ 0101  5
+ ====
+ 1010 -6
++   1
+ ====
+ 1011 -5 
 ```
-2.  Substract the number from all 1111 and add 1
+Substract the number from all 1111 and add 1
 ```
   1111
 - 0100  4
-======
+  ====
   1011
 +    1
-======
+  ====
   1100  -4
 ```
 
@@ -131,16 +131,16 @@ NOT(1)=
  1 | 1 | 1 | 1
 ```
 
-![Booleans](/images/truth-table.png)
+![Booleans](./images/truth-table.png)
 
 . = AND
 + = OR
 
 
 ## Boolean Algebra Laws
-![Booleans](/images/booleans1.png)
-![Booleans](/images/booleans2.png)
-![Booleans](/images/booleans3.png)
+![Booleans](./images/booleans1.png)
+![Booleans](./images/booleans2.png)
+![Booleans](./images/booleans3.png)
 
 
 **Any boolean function can be represented using an expression containing AND and NOT operators.**
@@ -274,18 +274,18 @@ Logic gates:
 
 
 ## Nand
-![Nand](/images/nand.png)
-![Nand](/images/Nand.png)
+![Nand](./images/nand.png)
+![Nand](./images/Nand.png)
 
 ## And, Or, Not
-![And or not](/images/and-or-not.png)
-![Or](/images/or-circuit.png)
+![And or not](./images/and-or-not.png)
+![Or](./images/or-circuit.png)
 
 ## Xor
-![Xor](/images/xor.png)
+![Xor](./images/xor.png)
 
 ## Composite Gates
-![Assembly](/images/composite-gates.png)
+![Assembly](./images/composite-gates.png)
 
 ## Multiplexor
 ```
@@ -297,15 +297,15 @@ else
     out = b
 ```
 
-![Mux](/images/multiplexor.png)
-![Mux](/images/mux.png)
+![Mux](./images/multiplexor.png)
+![Mux](./images/mux.png)
 
 ## Demultiplexor
-![Demux](/images/demultiplexor.png)
+![Demux](./images/demultiplexor.png)
 
 ## The Hack ALU
-![The Hack ALU](/images/the-hack-ALU.png)
-![The Hack ALU](/images/hack.png)
+![The Hack ALU](./images/the-hack-ALU.png)
+![The Hack ALU](./images/hack.png)
 
 
 Gate interface (left) and Gate Implementation (right)
