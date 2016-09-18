@@ -14,7 +14,7 @@ www.nand2tetris.org and the book "The Elements of Computing Systems"
 by Nisan and Schocken, MIT Press.
 
 
-## From Decimal to binary
+## Convert from Decimal to Binary
 - for even number write 0
 - for odd number write 1
 - divide by 2 and throw away the reminder
@@ -23,7 +23,7 @@ by Nisan and Schocken, MIT Press.
 - if number is even prefix with 0
 - go back to the third step
 
-## Adding binary
+## Adding Binary
 ```
   1011
 +  111
@@ -42,12 +42,12 @@ by Nisan and Schocken, MIT Press.
   101101
 ```
   
-## Hexadecimal
+## Hexadecimal to Decimal
 ```
 0 1 2 3 4 5 6 7 8 9 A B C D E F
 AF3 = 10*16^2 + 15 * 16^1 + 3 * 16^0 = 2803
 ```
-## Binary to hexadecimal
+## Binary to Hexadecimal
 Group the numbers in four numbers (they represent 0-16)
 ```
 1011 0110 1111 Binary
@@ -58,7 +58,7 @@ Group the numbers in four numbers (they represent 0-16)
 ```
 
 
-## Binary negative numbers - 2's complement
+## Binary Negative Numbers - 2's complement
 ```
 0000  0
 0001  1
@@ -81,7 +81,7 @@ Group the numbers in four numbers (they represent 0-16)
 Negative numbers begin with 1 and 
 Positive numbers begin with 0
 
-## From positive to negative - two ways to calculate it
+## Binary from Positive to Negative - two ways to calculate it
 
 Flip all bits and add 1
 ```
@@ -106,7 +106,10 @@ Substract the number from all 1111 and add 1
 
 
 ## Boolean logic
-
+```
+. = AND
++ = OR
+```
 Example:
 ```
 NOT(0 OR (1 AND 1))=
@@ -131,15 +134,18 @@ NOT(1)=
  1 | 1 | 1 | 1
 ```
 
-![Booleans](./images/truth-table.png)
 
-. = AND
-+ = OR
+![Booleans](./images/truth-tables.png)
+
+When writing down the Boolean expression from the truth table take only the lines where the f = 1 and OR all of them. Example bellow:
+![Booleans](./images/truth-table.png)
 
 
 ## Boolean Algebra Laws
 ![Booleans](./images/booleans1.png)
+
 ![Booleans](./images/booleans2.png)
+
 ![Booleans](./images/booleans3.png)
 
 
@@ -259,26 +265,24 @@ x | x | output
 ```
 
 
-```
-m = selection
-c = outputs
-n = 2^m
-m = log2n
-```
+
 Gate Logic
 
-A technique for implementing Boolean functions using logic gates
+A technique for implementing Boolean functions using logic gates.
+
 Logic gates:
 - Elementary (Nand, And, Or, Not ...)
-- Composite (Mux, Adder ...)
+- Composite (Multiplexer, Demultiplexer, Half-Adder, Full-Adder, Incrementer ...)
 
 
 ## Nand
 ![Nand](./images/nand.png)
+
 ![Nand](./images/Nand.png)
 
 ## And, Or, Not
 ![And or not](./images/and-or-not.png)
+
 ![Or](./images/or-circuit.png)
 
 ## Xor
@@ -297,32 +301,43 @@ else
     out = b
 ```
 
+
 ![Mux](./images/multiplexor.png)
+
 ![Mux](./images/mux.png)
 
 ## Demultiplexor
 ![Demux](./images/demultiplexor.png)
 
+```
+m = selection
+c = outputs
+n = 2^m
+m = log2n
+```
+## Half-adder
+Designed to add two bits.
+![Half-adder](./images/half-adder.png)
+
+## Full-adder
+Designed to add three bits.
+![Full-adder](./images/full-adder.png)
+## Adder
+Designed to add two n-bit numbers (n being 16, 32, 64, and so forth—depending on the computer platform.).
+![16bit-adder](./images/16bit-adder.png)
+
 ## The Hack ALU
 ![The Hack ALU](./images/the-hack-ALU.png)
+
 ![The Hack ALU](./images/hack.png)
-
-
-Gate interface (left) and Gate Implementation (right)
-??????
-
-## Circuit implementations
-
 
 
 
 ### Hardware simulation
-Files: .hdl, .tst, .out, .cmp
-
-HDL Code (and or test script) --> simulate in hardware simulator
-
-Run hardware simulator
-bash HardwareSimulator.sh
+Run hardware simulator (files in tools)
+`bash HardwareSimulator.sh`
+`bash Assembler.sh`
+`bash CPUEmulator.sh`
 
 
 ### Simulation proces
@@ -357,7 +372,46 @@ If A is a 16-bit bus then A[0] is the right-most bit and A[15] is the left most 
 A[0] lsb - least significant bit
 A[15] msb - most significant bit
 
-## Assembly
+## Address inputs
+```
+k(width of address input)
+k=log2n
+8=log23
+
+k= logn/log2
+log64/log2 = 6
+log512/log2 = 9
+```
+- load 0 = read
+- load 1 = write 
+
+```
+RAM		n		k
+===================
+RAM8	8		3
+RAM64	64		6
+RAM512	512		9
+RAM4K	4096	12
+RAM16K	16384	14
+```
+
+
+## Assembly example
 ![Assembly](./images/Assembly-loop.png)
 
+## Program development process
+Best practice is short, efficient, elegant and self-describing code.
 
+1. Design the program with pseudo-code
+2. Write the program in code
+3. Test the program using a variable and trace it on paper or test it
+
+## Tracing
+```
+		0 | 1 | 2 | 3 | 4 | ...
+===============================
+RAM[0]	3 |
+n		3 |
+i		1 | 2 | 3 | 4 | ...
+sum		0 | 1 | 3 | 6 | ...
+```
