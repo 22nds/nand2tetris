@@ -14,6 +14,97 @@ www.nand2tetris.org and the book "The Elements of Computing Systems"
 by Nisan and Schocken, MIT Press.
 
 
+## From Decimal to binary
+- for even number write 0
+- for odd number write 1
+- divide by 2 and throw away the reminder
+- if quotient is 0 algorithm is complete
+- if it is not 0 and not odd insert one 
+- if number is even prefix with 0
+- go back to the third step
+
+## Adding binary
+```
+  1011
++  111
+======
+ 10010
+```
+## Binary Multiplication
+```
+    1001
+*    101
+========
+    1001
+   0000
+  1001
+========
+  101101
+```
+  
+## Hexadecimal
+```
+0 1 2 3 4 5 6 7 8 9 A B C D E F
+AF3 = 10*16^2 + 15 * 16^1 + 3 * 16^0 = 2803
+```
+## Binary to hexadecimal
+Group the numbers in four numbers (they represent 0-16)
+```
+1011 0110 1111 Binary
+==============
+  11    6   15 Decimal
+==============
+   B    6    F Hexadecimal
+```
+
+
+## Binary negative numbers - 2's complement
+```
+0000  0
+0001  1
+0010  2
+0011  3
+0100  4
+0101  5
+0110  6
+0111  7
+-------
+1000 -8
+1001 -7
+1010 -6
+1011 -5
+1100 -4
+1101 -3
+1110 -2
+1111 -1
+```
+Negative numbers begin with 1 and 
+Positive numbers begin with 0
+
+## From positive to negative
+
+1. Flip all bits and add 1
+```
+0101  5
+====
+1010 -6
+   1
+====
+1011 -5 
+```
+2.  Substract the number from all 1111 and add 1
+```
+  1111
+- 0100  4
+======
+  1011
++    1
+======
+  1100  -4
+```
+
+
+
 ## Boolean logic
 
 Example:
@@ -40,43 +131,26 @@ NOT(1)=
  1 | 1 | 1 | 1
 ```
 
+![Booleans](/images/truth-table.png)
+
 . = AND
 + = OR
 
 
-
-![Booleans](/images/booleans.png)
-
-
-
-T1 : Commutative Law
-    (a) A + B = B + A
-    (b) A B = B A
-T2 : Associate Law
-    (a) (A + B) + C = A + (B + C)
-    (b) (A B) C = A (B C)
-T3 : Distributive Law
-    (a) A (B + C) = A B + A C
-    (b) A + (B C) = (A + B) (A + C)
-
-T11 : De Morgan's Theorem
-    (a)
-    (b) 
+## Boolean Algebra Laws
+![Booleans](/images/booleans1.png)
+![Booleans](/images/booleans2.png)
+![Booleans](/images/booleans3.png)
 
 
-*Any boolean function can be represented using an expression containing AND and NOT operators.*
+**Any boolean function can be represented using an expression containing AND and NOT operators.**
 
+```
 x OR y = NOT(NOT(x) AND NOT(y))
-
-NAND
-NOT(x AND x) = NOT(x) = x NAND x
-(x NAND y) = NOT(x AND y)
-
-NOT(x) = (x NAND x)
-x AND y = NOT(x NAND y)
+```
 
 
-## NAND gate
+## NAND 
 ```
  x | y | output 
 ===|===|===
@@ -85,7 +159,15 @@ x AND y = NOT(x NAND y)
  1 | 0 | 1 
  1 | 1 | 0 
 ```
-## AND gate
+
+```
+NOT(x AND x) = NOT(x) = x NAND x
+(x NAND y) = NOT(x AND y)
+NOT(x) = (x NAND x)
+x AND y = NOT(x NAND y)
+```
+
+## AND
 y = AB = A.B
 True if both inputs are true.
 ```
@@ -96,7 +178,17 @@ True if both inputs are true.
  1 | 0 | 0 
  1 | 1 | 1 
 ```
-## OR gate
+
+## 16-bit bitwise AND
+```
+a    0100111000111101
+b    1111001100011010
+=====================
+AND  0100001000011000
+```
+
+
+## OR
 y = A+B
 True if either or both inputs are true. 
 ```
@@ -107,8 +199,16 @@ True if either or both inputs are true.
  1 | 0 | 1 
  1 | 1 | 1 
 ```
-## XOR gate - Exclusive OR
 
+## 16-bitwise OR
+```
+a    0110110011100101
+b    1001110100101011
+=====================
+OR   1111110111101111
+```
+
+## XOR - Exclusive OR
 True if either but not both inputs are true. 
 ```
  x | y | output 
@@ -119,8 +219,8 @@ True if either but not both inputs are true.
  1 | 1 | 0 
 ```
 
-## NOT gate
-NOT(A)
+## NOT
+
 ```
  x | x | output 
 ===|===|===
@@ -129,8 +229,14 @@ NOT(A)
  1 | 0 | -
  1 | 1 | 0 
 ```
-## NOR gate
-Negated A+B
+## 16-bitwise NOT
+```
+a    1011010010110011
+=====================
+NOT  0100101101001100
+```
+
+## NOR 
 Output is true if both inputs are false.
 ```
  x | x | output 
@@ -152,6 +258,13 @@ x | x | output
  1 | 1 | 1 
 ```
 
+
+```
+m = selection
+c = outputs
+n = 2^m
+m = log2n
+```
 Gate Logic
 
 A technique for implementing Boolean functions using logic gates
@@ -160,52 +273,50 @@ Logic gates:
 - Composite (Mux, Adder ...)
 
 
+## Nand
+![Nand](/images/nand.png)
+![Nand](/images/Nand.png)
 
+## And, Or, Not
+![And or not](/images/and-or-not.png)
+![Or](/images/or-circuit.png)
 
+## Xor
+![Xor](/images/xor.png)
+
+## Composite Gates
+![Assembly](/images/composite-gates.png)
+
+## Multiplexor
+```
+inputs = a,b, sel
+output = out
+if (sel == 0)
+    out = a
+else
+    out = b
+```
+
+![Mux](/images/multiplexor.png)
+![Mux](/images/mux.png)
+
+## Demultiplexor
+![Demux](/images/demultiplexor.png)
+
+## The Hack ALU
+![The Hack ALU](/images/the-hack-ALU.png)
+![The Hack ALU](/images/hack.png)
 
 
 Gate interface (left) and Gate Implementation (right)
+??????
 
-Circuit implementations
-
-
-
-
-
-
-Hardware Description Language
+## Circuit implementations
 
 
 
 
-
-
-
-
-
-
-
-
-    HDL is a functional / declarative language
-    The order of HDL statements is insignificant
-    Before using a chip part, you must know its interface. For example:
-        Not(in= , out= )
-        And(a= , b= , out= )
-        Or(a= , b= , out= )
-
-Hardware description languages
-Common HDLs
-
-    VHDL
-    Verilog
-
-Our HDL
-
-    Similar in spirit to other HDLs
-    Minimal and simple
-    Provides all you need for this course
-
-Hardware simulation
+### Hardware simulation
 Files: .hdl, .tst, .out, .cmp
 
 HDL Code (and or test script) --> simulate in hardware simulator
@@ -214,166 +325,39 @@ Run hardware simulator
 bash HardwareSimulator.sh
 
 
-Simulation proces
+### Simulation proces
 
-    Load the HDL file into the hardware simulator
-    Enter values (0s and 1s) into the chip's input pins
-    Evaluate the chip's logic
-    Inspect the resulting values of
-        The output pins (eg. out)
-        The internal pins (nota, notb, aAndnotb, notaAndb)
+- Load the HDL file into the hardware simulator
+- Enter values (0s and 1s) into the chip's input pins
+- Evaluate the chip's logic
+- Inspect the resulting values of the output pins (eg. out) and internal pins (nota, notb, aAndnotb, notaAndb)
 
-Testing scripts
+### Testing scripts
 
-    Load the HDL and test script files
-    Run the script
-    Check if there were any errors
+- Load the HDL and test script files
+- Run the script
+- Check if there were any errors
 
 
-Simulation with compare file logic
+### Simulation with compare file logic
 
-    when each output command is executed, the outputted line (.out) is compared to the corresponding line in the compare file (.cmp)
-    if the two lines are not the same, the simulator throws a comparison error
+When each output command is executed, the outputted line (.out) is compared to the corresponding line in the compare file (.cmp)
+If the two lines are not the same, the simulator throws a comparison error
 
 
 Test script = series of commands to the simulator
 
-Multi-bit Buses
+### Multi-bit Buses
 
 Multi-bit busses are indexed right to left
 If A is a 16-bit bus then A[0] is the right-most bit and A[15] is the left most bit
+
 0 1 0 1 1 1 1 1 1 1 1 1 0 0 0 1
+
 A[0] lsb - least significant bit
 A[15] msb - most significant bit
 
-
-
-
-PROJECT 1 - 30 different chips
-
-Given: Nand
-Goal is to build the following gates
-
-    Elementary logic gates
-        Not
-        And
-        Or 
-        Xor
-        Mux  (use And, Or, Not)
-        Dmux (Demultiplexor) 
-    16-bit variants
-        Not16
-        And16
-        Or16
-        Mux16 
-    Multi-way variants
-        Or8Way 
-        Mux4Way16
-        Mux8Way16
-        DMux4Way
-        DMux8Way
-		
-		
-## 16-bit bitwise AND
-```
-a    0100111000111101
-b    1111001100011010
-=====================
-AND  0100001000011000
-```
-## 16-bitwise OR
-```
-a    0110110011100101
-b    1001110100101011
-=====================
-OR   1111110111101111
-```
-## 16-bitwise NOT
-```
-a    1011010010110011
-=====================
-NOT  0100101101001100
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Multiplexor
-```
-inputs = a,b, sel
-output = out
-if (sel == 0)
-     out = a
-else
-     out = b
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-HALF ADDER
-FULL ADDER
-MULTI-BIT ADDER
-
-ARITHMETIC LOGIC UNIT (ALU)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Assembly
+![Assembly](./images/Assembly-loop.png)
 
 
