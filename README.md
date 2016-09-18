@@ -1,13 +1,12 @@
 ## About
 
 These files were created as part of the course
-*Build a computer on Coursera*
+Build a computer on Coursera*
 https://www.coursera.org/learn/build-a-computer
 
-Book pdf, lecture pdfs, tools code and projects were provided
-code in projects was modified to make a working computer and 
-the notes are here to make sure a quick review of all content 
-is available.
+Book pdf, lecture pdfs, tools code and projects were provided.
+First four projects are provided and  the notes are here to make 
+sure a quick review of all content is available.
 
 ## More info:
 www.nand2tetris.org and the book "The Elements of Computing Systems"
@@ -19,9 +18,14 @@ by Nisan and Schocken, MIT Press.
 - for odd number write 1
 - divide by 2 and throw away the reminder
 - if quotient is 0 algorithm is complete
-- if it is not 0 and not odd insert one 
-- if number is even prefix with 0
+- for odd insert one 
+- for even prefix with 0
 - go back to the third step
+
+```
+5 = 1001
+10 = 1010
+```
 
 ## Adding Binary
 ```
@@ -406,7 +410,7 @@ Best practice is short, efficient, elegant and self-describing code.
 2. Write the program in code
 3. Test the program using a variable and trace it on paper or test it
 
-## Tracing
+## Tracing loops on paper
 ```
 		0 | 1 | 2 | 3 | 4 | ...
 ===============================
